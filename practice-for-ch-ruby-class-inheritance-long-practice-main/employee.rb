@@ -1,17 +1,19 @@
-require_relative 'manager'
+# require_relative 'manager'
 
 class Employee
-  def initialize(name, title, boss, salary=10000)
+
+  attr_accessor :boss
+  def initialize(name, title, boss=nil, salary=10000)
     @name = name
     @title = title
     @salary = salary
     @boss = boss
-    # assign_self
+    assign_self
   end
 
-  # def assign_self
-  #   @boss.employees << self
-  # end
+  def assign_self
+    @boss.employees << self if !@boss.nil?
+  end
 
 end
 

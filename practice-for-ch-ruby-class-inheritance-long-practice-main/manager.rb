@@ -1,6 +1,7 @@
-# require_relative "employee"
+require_relative "employee"
 
 class Manager < Employee
+
   attr_accessor :boss, :employees
   def initialize(name,title,boss, salary=10000)
     super
