@@ -9,6 +9,7 @@ class Board
     # iterate through the board, to place each piece
     place_nil
     place_piece
+    @null_piece = Piece.new
   end
 
   def [](pos)
@@ -23,13 +24,13 @@ class Board
 
   def move_piece(start_pos, end_pos)
     # debugger
-    # if self[end_pos].value != nil && self[start_pos].value != nil && Board.check_valid?(end_pos)
-      # debugger
+    if self[end_pos].value == nil && self[start_pos].value != nil && Board.check_valid?(end_pos)
+      
       self[end_pos] = self[start_pos]
       self[start_pos] = @null_piece
-    # else
-    #   raise "cannot move to end position"
-    # end
+    else
+      raise "cannot move to end position"
+    end
   end
 
   def self.check_valid?(pos)
@@ -38,7 +39,7 @@ class Board
   end
 
   private
-  @null_piece = Piece.new
+  
   def place_nil
     (2..5).each do |x|
       (0..7).each do |y|
