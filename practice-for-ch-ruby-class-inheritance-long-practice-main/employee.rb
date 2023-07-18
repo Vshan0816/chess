@@ -1,13 +1,24 @@
+require_relative 'manager'
+
 class Employee
-  def initialize(name, title, boss_name, salary=10000)
+  def initialize(name, title, boss, salary=10000)
     @name = name
     @title = title
     @salary = salary
-    @boss_name = boss_name
+    @boss = boss
+    # assign_self
   end
 
+  # def assign_self
+  #   @boss.employees << self
+  # end
 
 end
+
+
+# Darren = Manager.new("Darren", 'TA Manager', nil, 78000)
+# emp1 = Employee.new("Shawna", "ta", Darren, 12000)
+# emp2 = Employee.new("David", "ta", Darren, 10000)
 
 
 
