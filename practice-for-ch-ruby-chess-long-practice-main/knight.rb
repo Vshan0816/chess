@@ -6,9 +6,9 @@ class Knight < Piece
         :H
     end
 
-    def move_dirs(current_pos, moves)
+    # def move_dirs(current_pos, moves)
 
-    end
+    # end
 
     
 
