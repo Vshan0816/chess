@@ -5,8 +5,8 @@ class King < Piece
     def symbol
         :K
     end
-    
-    def move_dirs(current_pos, moves)
 
-    end
+    # def move_dirs(current_pos, moves)
+
+    # end
 end

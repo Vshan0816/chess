@@ -17,25 +17,22 @@ end
     dx, dy = step
     moves = []
     next_pos = [dx + x, dy + y]
-    while
-      if !check_valid?(next_pos)
-        break
-      else
+      if check_valid?(next_pos)
         if self.board[next_pos].empty?
           moves << next_pos
-
         else
-          if self.board[next_pos].color == self.board[current_pos].color
-              break
-          else
+          if self.board[next_pos].color != self.board[current_pos].color
               moves << next_pos
-              break
           end
         end
       end
-
-    end
     moves
+end
+
+
+def check_valid?(pos)
+  x, y = pos
+  (x >= 0 && x < 8) && (y >= 0 && y < 8)
 end
 
 
