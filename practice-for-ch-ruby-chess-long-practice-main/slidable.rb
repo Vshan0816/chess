@@ -17,16 +17,21 @@ module Slidable
         moves = []
         next_pos = [dx + x, dy + y]
         while
-            #use a while loop
-            #break out of if out of boundary,
-            #opponent color, then stop on that square
-            #same color, stop one before
-            if self[next_pos] == @null_piece
-                moves << next_pos
-                curr_pos = next_pos
-                next_pos =
-                # check_valid?(end_pos) &&
-                # if self.color ==
+                if !check_valid?(next_pos)
+                    break
+                else
+                    if self.empty?
+                        moves << next_pos
+                        next_pos = [dx + x, dy + y]
+                    else
+                        if self.board[next_pos].color == self.board[current_pos].color
+                            break
+                        else
+                            moves << next_pos
+                            break
+                        end
+                    end
+                end
             end
         end
 
