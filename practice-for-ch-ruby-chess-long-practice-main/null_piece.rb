@@ -5,4 +5,9 @@ class NullPiece < Piece
     @value = value
   end
 
+
+  def empty?
+    true
+  end
+
 end

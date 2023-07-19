@@ -18,23 +18,24 @@ module Slidable
         next_pos = [dx + x, dy + y]
         while
             #use a while loop
-            #break out of if out of boundary, 
+            #break out of if out of boundary,
             #opponent color, then stop on that square
             #same color, stop one before
-            if self[next_pos] == @null_piece 
+            if self[next_pos] == @null_piece
                 moves << next_pos
-                next_po
-                # check_valid?(end_pos) && 
-                # if self.color == 
+                curr_pos = next_pos
+                next_pos =
+                # check_valid?(end_pos) &&
+                # if self.color ==
             end
         end
 
     end
-    
+
     def check_valid?(pos)
         x, y = pos
         (x >= 0 && x < 8) && (y >= 0 && y < 8)
     end
-    
-    
+
+
 end
