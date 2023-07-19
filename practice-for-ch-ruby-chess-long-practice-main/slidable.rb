@@ -6,9 +6,10 @@ module Slidable
         possible_moves = []
         moves.each do |move|
             move.each do |dir|
-                possibles_moves << gum(current_pos, dir)
+                possible_moves += gum(current_pos, dir)
             end
         end
+        possible_moves
     end
 
     def gum(current_pos, dir)
@@ -20,9 +21,11 @@ module Slidable
                 if !check_valid?(next_pos)
                     break
                 else
-                    if self.empty?
+                    if self.board[next_pos].empty?
                         moves << next_pos
-                        next_pos = [dx + x, dy + y]
+                        current = next_pos
+                        i,j = current
+                        next_pos = [i + dx, j + dy]
                     else
                         if self.board[next_pos].color == self.board[current_pos].color
                             break
@@ -32,9 +35,9 @@ module Slidable
                         end
                     end
                 end
-            end
+            
         end
-
+        moves
     end
 
     def check_valid?(pos)

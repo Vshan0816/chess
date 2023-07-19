@@ -37,7 +37,7 @@ class Board
 
   def move_piece(start_pos, end_pos)
     # debugger
-    if self[end_pos] == @null_piece && self[start_pos] != @null_piece && check_valid?(end_pos)
+    if self[end_pos] == @null_piece && self[start_pos] != @null_piece && Board.check_valid?(end_pos)
 
       self[end_pos] = self[start_pos]
 
@@ -48,10 +48,10 @@ class Board
     end
   end
 
-  # def self.check_valid?(pos)
-  #   x, y = pos
-  #   (x >= 0 && x < 8) && (y >= 0 && y < 8)
-  # end
+  def self.check_valid?(pos)
+    x, y = pos
+    (x >= 0 && x < 8) && (y >= 0 && y < 8)
+  end
 
   private
 
