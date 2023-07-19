@@ -7,11 +7,13 @@ require_relative "queen"
 require_relative "rook"
 require_relative "null_piece"
 require "byebug"
+require_relative "slidable"
 
 PIECE_ARRAY=[Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
 
 class Board
+  include Slidable
   attr_accessor :null_piece
   def initialize
     @null_piece = NullPiece.new(color=nil, self, pos=nil)
@@ -35,7 +37,7 @@ class Board
 
   def move_piece(start_pos, end_pos)
     # debugger
-    if self[end_pos] == @null_piece && self[start_pos] != @null_piece && Board.check_valid?(end_pos)
+    if self[end_pos] == @null_piece && self[start_pos] != @null_piece && check_valid?(end_pos)
 
       self[end_pos] = self[start_pos]
 
@@ -46,10 +48,10 @@ class Board
     end
   end
 
-  def self.check_valid?(pos)
-    x, y = pos
-    (x >= 0 && x < 8) && (y >= 0 && y < 8)
-  end
+  # def self.check_valid?(pos)
+  #   x, y = pos
+  #   (x >= 0 && x < 8) && (y >= 0 && y < 8)
+  # end
 
   private
 
