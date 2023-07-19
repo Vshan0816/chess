@@ -8,7 +8,7 @@ class Bishop < Piece
     return :B
   end
 
-  def move_dirs(current_pos, DIAGONAL_DIRS)
+  def move_dirs(current_pos, *moves)
 
 
   end

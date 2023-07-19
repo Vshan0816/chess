@@ -7,7 +7,7 @@ class Rook < Piece
         return :R
       end
 
-    def move_dirs(current_pos, HORIZONTAL_DIRS)
+    def move_dirs(current_pos, *moves)
 
 
     end

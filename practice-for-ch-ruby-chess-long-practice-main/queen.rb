@@ -8,7 +8,7 @@ class Queen < Piece
     return :Q
   end
 
-  def move_dirs(current_pos, [DIAGONAL_DIRS,HORIZONTAL_DIRS])
+  def move_dirs(current_pos, *moves)
 
 
   end
