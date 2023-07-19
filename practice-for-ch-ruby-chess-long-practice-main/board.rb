@@ -1,16 +1,25 @@
 require_relative "piece"
+require_relative "bishop"
+require_relative "king"
+require_relative "knight"
+require_relative "pawn"
+require_relative "queen"
+require_relative "rook"
+require_relative "null_piece"
 require "byebug"
+
+PIECE_ARRAY=[Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
+
 class Board
-
-  PIECE_ARRAY=[Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
-
+  attr_accessor :null_piece
   def initialize
-    @board = Array.new(8){Array.new(8)}
+    @null_piece = NullPiece.new(color=nil, self, pos=nil)
+    @board = Array.new(8){Array.new(8, @null_piece) }
     # iterate through the board, at the positions to place nil
     # iterate through the board, to place each piece
-    place_nil
+    # place_nil
     # place_piece
-    @null_piece = Piece.new
     initialize_rows
   end
 
@@ -26,10 +35,12 @@ class Board
 
   def move_piece(start_pos, end_pos)
     # debugger
-    if self[end_pos].value == nil && self[start_pos].value != nil && Board.check_valid?(end_pos)
+    if self[end_pos] == @null_piece && self[start_pos] != @null_piece && Board.check_valid?(end_pos)
 
       self[end_pos] = self[start_pos]
+
       self[start_pos] = @null_piece
+      self[end_pos].pos = end_pos
     else
       raise "cannot move to end position"
     end
@@ -42,21 +53,22 @@ class Board
 
   private
 
-  def place_nil
-    (2..5).each do |x|
-      (0..7).each do |y|
-        @board[x][y] = Piece.new
-      end
-    end
-  end
+  # def place_nil
+  #   (2..5).each do |x|
+  #     (0..7).each do |y|
+  #       @board[x][y] = Piece.new(color=nil, self, pos=[x,y])
+  #     end
+  #   end
+  # end
 
-  def place_piece
-    @board[0][0] = Piece.new(:B)
-  end
+  # def place_piece
+  #   @board[0][0] = Piece.new(:B)
+  # end
 
   def initialize_rows
+
     %i(white black).each do |color|
-      if color == white
+      if color == :white
         i = 7
         PIECE_ARRAY.each_with_index do |piece, j|
             @board[i][j] = piece.new(color, self, pos=[i,j])
@@ -76,4 +88,5 @@ class Board
           end
       end
     end
+  end
 end

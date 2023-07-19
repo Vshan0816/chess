@@ -6,18 +6,19 @@
 # require_relative "rook"
 # require_relative "null_piece"
 
+
 class Piece
 
   #color ivar should hold a symbol, blackwhite
   #when we initialize we need to set the symbol, board instance, position
   #ivar for board
   #ivar for position, starting position
-  attr_accessor :color, :board, :pos, :value
-  def initialize(color = nil,board =nil, pos =nil, value=nil)
+  attr_accessor :color, :board, :pos
+  def initialize(color = nil,board =nil, pos =nil)
     @color = color
     @board = board
     @pos=pos
-    @value = value
+
   end
 
 
