@@ -9,8 +9,9 @@ class Board
     # iterate through the board, at the positions to place nil
     # iterate through the board, to place each piece
     place_nil
-    place_piece
+    # place_piece
     @null_piece = Piece.new
+    initialize_rows
   end
 
   def [](pos)
@@ -53,18 +54,26 @@ class Board
     @board[0][0] = Piece.new(:B)
   end
 
-  def initial_back_row
+  def initialize_rows
     %i(white black).each do |color|
       if color == white
         i = 7
         PIECE_ARRAY.each_with_index do |piece, j|
-          @board[i][j] = piece.new(color, self, pos=[i,j])
+            @board[i][j] = piece.new(color, self, pos=[i,j])
+        end
+        i -= 1
+        (0..7).each do |j|
+          @board[i][j] = Pawn.new(color, self, pos=[i,j])
         end
       else
-
+          i = 0
+          PIECE_ARRAY.each_with_index do |piece, j|
+            @board[i][j] = piece.new(color, self, pos=[i,j])
+          end
+          i += 1
+          (0..7).each do |j|
+            @board[i][j] = Pawn.new(color, self, pos=[i,j])
+          end
       end
-
     end
-
-  end
 end
